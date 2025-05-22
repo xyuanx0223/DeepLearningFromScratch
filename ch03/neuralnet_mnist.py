@@ -1,14 +1,16 @@
 # coding: utf-8
-import sys, os
-sys.path.append(os.pardir)  # 为了导入父目录的文件而进行的设定
+import sys
+import os
 import numpy as np
 import pickle
 from dataset.mnist import load_mnist
 from common.functions import sigmoid, softmax
+sys.path.append(os.pardir)  # 为了导入父目录的文件而进行的设定
 
 
 def get_data():
-    (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, flatten=True, one_hot_label=False)
+    (x_train, t_train), (x_test, t_test) = load_mnist(
+        normalize=True, flatten=True, one_hot_label=False)
     return x_test, t_test
 
 
@@ -37,7 +39,8 @@ network = init_network()
 accuracy_cnt = 0
 for i in range(len(x)):
     y = predict(network, x[i])
-    p= np.argmax(y) # 获取概率最高的元素的索引
+    p = np.argmax(y)
+    # 获取概率最高的元素的索引
     if p == t[i]:
         accuracy_cnt += 1
 
